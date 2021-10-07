@@ -1,15 +1,16 @@
 #Note deploying to an RG. To deploy to a subscription and create RGs and multiple RGs use New-AzDeployment
 #https://docs.microsoft.com/en-us/azure/azure-resource-manager/resource-group-template-deploy
 
-$GitBasePath = '<repo clone path>\ImpInfraasCode'
+
+
 
 #Deploy simple template creating a storage account
-New-AzResourceGroupDeployment -ResourceGroupName RG-IaCSample `
+New-AzResourceGroupDeployment -ResourceGroupName rg-dmaz-devops-we-01 `
     -TemplateFile "$GitBasePath\Module3\StorageAccount.json" `
     -TemplateParameterFile "$GitBasePath\Module3\StorageAccount.parameters.json"
 
 #Run same template again but override the type of the storage account
-New-AzResourceGroupDeployment -ResourceGroupName RG-IaCSample `
+New-AzResourceGroupDeployment -ResourceGroupName rg-dmaz-devops-we-01 `
     -TemplateFile "$GitBasePath\\Module3\StorageAccount.json" `
     -TemplateParameterFile "$GitBasePath\\Module3\StorageAccount.parameters.json" `
     -StorageAccountType 'Standard_GRS'
